@@ -1,0 +1,560 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>My Portfolio</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            line-height: 1.6;
+            color: #333;
+            background-color: #f8f9fa;
+        }
+
+
+        nav {
+            background-color: #1a1a2e;
+            color: white;
+            padding: 1rem 2rem;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            position: sticky;
+            top: 0;
+            z-index: 100;
+            box-shadow: 0 2px 10px rgba(0,0,0,0.1);
+        }
+
+        .logo {
+            font-size: 1.5rem;
+            font-weight: bold;
+            color: #00d4ff;
+        }
+
+        .nav-links {
+            display: flex;
+            list-style: none;
+            gap: 2rem;
+        }
+
+        .nav-links a {
+            color: white;
+            text-decoration: none;
+            font-weight: 500;
+            transition: color 0.3s;
+        }
+
+        .nav-links a:hover {
+            color: #00d4ff;
+        }
+
+        .hero {
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            gap: 4rem;
+            padding: 4rem 2rem;
+            background: linear-gradient(135deg, #1a1a2e 0%, #16213e 100%);
+            color: white;
+            min-height: 80vh;
+        }
+
+        .hero-content {
+            max-width: 500px;
+        }
+
+        .hero-content h1 {
+            font-size: 2.8rem;
+            margin-bottom: 0.5rem;
+        }
+
+        .hero-content h1 span {
+            color: #00d4ff;
+        }
+
+        .hero-content h2 {
+            font-size: 1.4rem;
+            font-weight: 400;
+            color: #a0a0a0;
+            margin-bottom: 1.5rem;
+        }
+
+        .hero-content p {
+            margin-bottom: 2rem;
+            color: #d0d0d0;
+        }
+
+        .hero-buttons {
+            display: flex;
+            gap: 1rem;
+        }
+
+        .btn {
+            padding: 0.8rem 1.5rem;
+            border-radius: 5px;
+            text-decoration: none;
+            font-weight: 600;
+            transition: all 0.3s;
+            display: inline-block;
+        }
+
+        .btn-primary {
+            background-color: #00d4ff;
+            color: #1a1a2e;
+        }
+
+        .btn-primary:hover {
+            background-color: #00b8e0;
+            transform: translateY(-2px);
+        }
+
+        .btn-secondary {
+            border: 2px solid #00d4ff;
+            color: #00d4ff;
+        }
+
+        .btn-secondary:hover {
+            background-color: #00d4ff;
+            color: #1a1a2e;
+        }
+
+        .hero-image {
+            width: 280px;
+            height: 280px;
+            border-radius: 50%;
+            overflow: hidden;
+            border: 5px solid #00d4ff;
+            box-shadow: 0 0 30px rgba(0, 212, 255, 0.3);
+        }
+
+        .hero-image img {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+        }
+
+        section {
+            padding: 4rem 2rem;
+            max-width: 1100px;
+            margin: 0 auto;
+        }
+
+        .section-title {
+            text-align: center;
+            font-size: 2rem;
+            margin-bottom: 3rem;
+            color: #1a1a2e;
+            position: relative;
+        }
+
+        .section-title::after {
+            content: '';
+            display: block;
+            width: 60px;
+            height: 4px;
+            background: #00d4ff;
+            margin: 0.5rem auto 0;
+            border-radius: 2px;
+        }
+
+    
+        .about-content {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 3rem;
+            align-items: center;
+        }
+
+        .about-text p {
+            margin-bottom: 1rem;
+            color: #555;
+        }
+
+        .about-info {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 1rem;
+            margin-top: 1.5rem;
+        }
+
+        .info-item {
+            background: white;
+            padding: 1rem;
+            border-radius: 8px;
+            box-shadow: 0 2px 8px rgba(0,0,0,0.08);
+        }
+
+        .info-item strong {
+            color: #00d4ff;
+            display: block;
+            margin-bottom: 0.3rem;
+        }
+
+    
+        .skills-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(140px, 1fr));
+            gap: 1.5rem;
+        }
+
+        .skill-card {
+            background: white;
+            padding: 1.5rem;
+            border-radius: 10px;
+            text-align: center;
+            box-shadow: 0 2px 10px rgba(0,0,0,0.08);
+            transition: transform 0.3s, box-shadow 0.3s;
+        }
+
+        .skill-card:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 8px 20px rgba(0,0,0,0.12);
+        }
+
+        .skill-card .icon {
+            font-size: 2rem;
+            margin-bottom: 0.5rem;
+        }
+
+        .skill-card h3 {
+            font-size: 1rem;
+            color: #1a1a2e;
+        }
+
+     
+        .projects-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            gap: 2rem;
+        }
+
+        .project-card {
+            background: white;
+            border-radius: 12px;
+            overflow: hidden;
+            box-shadow: 0 2px 12px rgba(0,0,0,0.08);
+            transition: transform 0.3s, box-shadow 0.3s;
+        }
+
+        .project-card:hover {
+            transform: translateY(-8px);
+            box-shadow: 0 12px 25px rgba(0,0,0,0.15);
+        }
+
+        .project-img {
+            height: 180px;
+            background: linear-gradient(135deg, #1a1a2e, #00d4ff);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            color: white;
+            font-size: 1.5rem;
+            font-weight: bold;
+        }
+
+        .project-info {
+            padding: 1.5rem;
+        }
+
+        .project-info h3 {
+            margin-bottom: 0.5rem;
+            color: #1a1a2e;
+        }
+
+        .project-info p {
+            color: #666;
+            margin-bottom: 1rem;
+            font-size: 0.95rem;
+        }
+
+        .project-links {
+            display: flex;
+            gap: 1rem;
+        }
+
+        .project-links a {
+            text-decoration: none;
+            font-weight: 600;
+            font-size: 0.9rem;
+            color: #00d4ff;
+            border: 1px solid #00d4ff;
+            padding: 0.4rem 0.8rem;
+            border-radius: 5px;
+            transition: all 0.3s;
+        }
+
+        .project-links a:hover {
+            background: #00d4ff;
+            color: white;
+        }
+
+  
+        .contact-container {
+            display: flex;
+            justify-content: center;
+            gap: 2rem;
+            flex-wrap: wrap;
+        }
+
+        .contact-card {
+            background: white;
+            padding: 2rem;
+            border-radius: 12px;
+            text-align: center;
+            box-shadow: 0 2px 12px rgba(0,0,0,0.08);
+            min-width: 200px;
+            transition: transform 0.3s;
+        }
+
+        .contact-card:hover {
+            transform: translateY(-5px);
+        }
+
+        .contact-card .icon {
+            font-size: 2rem;
+            margin-bottom: 0.8rem;
+        }
+
+        .contact-card a {
+            color: #00d4ff;
+            text-decoration: none;
+            font-weight: 600;
+        }
+
+        .contact-card a:hover {
+            text-decoration: underline;
+        }
+
+        
+        footer {
+            background: #1a1a2e;
+            color: white;
+            text-align: center;
+            padding: 1.5rem;
+            margin-top: 2rem;
+        }
+
+        footer a {
+            color: #00d4ff;
+            text-decoration: none;
+        }
+
+        
+        @media (max-width: 768px) {
+            .hero {
+                flex-direction: column-reverse;
+                text-align: center;
+                gap: 2rem;
+                padding: 3rem 1.5rem;
+            }
+
+            .hero-content h1 {
+                font-size: 2rem;
+            }
+
+            .hero-buttons {
+                justify-content: center;
+            }
+
+            .about-content {
+                grid-template-columns: 1fr;
+            }
+
+            .nav-links {
+                gap: 1rem;
+                font-size: 0.9rem;
+            }
+
+            .hero-image {
+                width: 200px;
+                height: 200px;
+            }
+        }
+    </style>
+</head>
+<body>
+
+    <nav>
+        <div class="logo">My Portfolio Website</div>
+        <ul class="nav-links">
+            <li><a href="#home">Home</a></li>
+            <li><a href="#about">About</a></li>
+            <li><a href="#skills">Skills</a></li>
+            <li><a href="#projects">Projects</a></li>
+            <li><a href="#contact">Contact</a></li>
+        </ul>
+    </nav>
+
+    <section class="hero" id="home">
+        <div class="hero-content">
+            <h1>Hi, I'm <span>Tanishk Semwal</span></h1>
+            <h2>Student at Scaler School Of Technology</h2>
+            <p>
+               I'm a newbie in coding, but im trying my best to get better at it and I have made this website using HTML and CSS, and i have also used AI for some syntaxs in order to make my website attractive.
+            </p>
+            <div class="hero-buttons">
+                <a href="#projects" class="btn btn-primary">View Projects</a>
+                <a href="https://github.com/tanisksemwal10" target="_blank" class="btn btn-secondary ">GitHub</a> 
+            </div>
+        </div>
+        <div class="hero-image">
+            <img src="C:\Users\Tanishk Semwal\OneDrive\Documents\myphoto.jpeg" alt="My Photo">
+        </div>
+    </section>
+
+   
+    <section id="about">
+        <h2 class="section-title">About Me</h2>
+        <div class="about-content">
+            <div class="about-text">
+                <p>
+                    Hello! I'm a passionate web developer. I love to make interactive web pages and more. I'm still learning how to get better at it.
+                </p>
+                <p>
+                   
+                    I have designed this website using HTML and CSS. I have used almost all the properties thant have been taught in my classes by my tutor Shubham Behl sir.
+                </p>
+            </div>
+            <div class="about-info">
+                <div class="info-item">
+                    <strong>Name</strong>
+                    Tanishk Semwal
+                </div>
+                <div class="info-item">
+                    <strong>Email</strong>
+                    tanishksemwal8thc@gmail.com
+                </div>
+                <div class="info-item">
+                    <strong>Location</strong>
+                    Bangalore, India
+                </div>
+                <div class="info-item">
+                    <strong>Available</strong>
+                    For Freelance
+                </div>
+            </div>
+        </div>
+    </section>
+
+   
+    <section id="skills">
+        <h2 class="section-title">Skills</h2>
+        <div class="skills-grid">
+            <div class="skill-card">
+                <div class="icon">🌐</div>
+                <h3>HTML</h3>
+            </div>
+            <div class="skill-card">
+                <div class="icon">🎨</div>
+                <h3>CSS</h3>
+            </div>
+            <div class="skill-card">
+                <div class="icon">📐</div>
+                <h3>Flexbox</h3>
+            </div>
+            <div class="skill-card">
+                <div class="icon">🔲</div>
+                <h3>CSS Grid</h3>
+            </div>
+            <div class="skill-card">
+                <div class="icon">⚡</div>
+                <h3>JavaScript</h3>
+            </div>
+            <div class="skill-card">
+                <div class="icon">📱</div>
+                <h3>Responsive</h3>
+            </div>
+            <div class="skill-card">
+                <div class="icon">🐙</div>
+                <h3>GitHub</h3>
+            </div>
+            <div class="skill-card">
+                <div class="icon">🛠️</div>
+                <h3>Git</h3>
+            </div>
+        </div>
+    </section>
+
+   
+    <section id="projects">
+        <h2 class="section-title">Dummy Projects</h2>
+        <div class="projects-grid">
+
+            <div class="project-card">
+                <div class="project-img">Project 1</div>
+                <div class="project-info">
+                    <h3>Personal Portfolio</h3>
+                    <p>Responsive portfolio website banaya using HTML, CSS Flexbox aur Grid.</p>
+                    <div class="project-links">
+                        <a href="https://github.com/yourusername/portfolio" target="_blank">GitHub</a>
+                        <a href="#" target="_blank">Live Demo</a>
+                    </div>
+                </div>
+            </div>
+
+            <div class="project-card">
+                <div class="project-img">Project 2</div>
+                <div class="project-info">
+                    <h3>Todo App</h3>
+                    <p>Simple Todo List application with add, delete and mark as complete features.</p>
+                    <div class="project-links">
+                        <a href="https://github.com/yourusername/todo-app" target="_blank">GitHub</a>
+                        <a href="#" target="_blank">Live Demo</a>
+                    </div>
+                </div>
+            </div>
+
+            <div class="project-card">
+                <div class="project-img">Project 3</div>
+                <div class="project-info">
+                    <h3>Landing Page</h3>
+                    <p>Modern product landing page with beautiful UI using pure CSS.</p>
+                    <div class="project-links">
+                        <a href="https://github.com/yourusername/landing-page" target="_blank">GitHub</a>
+                        <a href="#" target="_blank">Live Demo</a>
+                    </div>
+                </div>
+            </div>
+
+        </div>
+    </section>
+
+    
+    <section id="contact">
+        <h2 class="section-title">Contact Me</h2>
+        <div class="contact-container">
+            <div class="contact-card">
+                <div class="icon">📧</div>
+                <h3>Email</h3>
+                <a href="mailto:tanishksemwal8thc@gmail.com">tanishksemwal8thc@gmail.com</a>
+            </div>
+            <div class="contact-card">
+                <div class="icon">🐙</div>
+                <h3>GitHub</h3>
+                <a href="https://github.com/tanishksemwal10" target="_blank">github.com/tanishksemwal10</a>
+            </div>
+            <div class="contact-card">
+                <div class="icon">💼</div>
+                <h3>LinkedIn</h3>
+                <a href="https://linkedin.com/in/tanishksemwal" target="_blank">linkedin.com/tanishksemwal</a>
+            </div>
+        </div>
+    </section>
+
+    
+    <footer>
+        <p> Tanishk Semwal | Made using HTML & CSS</p>
+        <p style="margin-top: 0.5rem;">
+            <a href="https://github.com/tanishksemwal10" target="_blank">GitHub</a>
+        </p>
+    </footer>
+
+</body>
+</html>
